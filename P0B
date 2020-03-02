@@ -1,0 +1,118 @@
+public class P0B
+{
+    public static Integer nFibonacci(Integer n)
+    {
+        Integer firstNumber = 1;
+        Integer secondNumber = 0;
+        integer placeHolder;
+		if(n == 0)
+        {
+            return 0;
+        }
+        for(Integer i = 1; i <= n; i++)
+        {
+            placeHolder = firstNumber + secondNumber;
+            firstNumber = secondNumber;
+            secondNumber = placeHolder;
+        }
+        return placeHolder;
+        
+    }
+    public static Integer[] sortArray( Integer[] intList )
+    {
+		List<Integer> fList = new List<Integer>(intList);
+    
+        integer placeHolder;
+        integer length = fList.size(); 
+        
+       for (integer j = 0; j < length-1; j++)
+       {
+           for(integer i = 0; i < length-j-1; i++) //bubble sort ( take first 2 numbers , compare and swap when first number is higher then second number then repeat through list)
+           {
+         		if(fList.get(i) > fList.get(i+1))
+         		{
+            	placeHolder = fList.get(i);
+               
+             	fList.set(i, fList.get(i+1));
+               
+             	fList.set(i+1, placeHolder);
+         		}
+           }
+       }
+        return fList;
+    }
+    public static Integer nFactorial( Integer n) 
+    {
+        integer result = 1;
+        
+        if(n == 0)
+        {
+            return 1;
+        }
+        for(integer i = 1; i <= n; i++) // multiply upward until you get to desired factorial number
+        {
+            result = result * i;
+        }
+        return result;
+    }
+    public static Integer[] rotateLeftNTimes( Integer[] arry, Integer n) 
+    {
+		List<Integer> fList = new List<Integer>(arry);
+        
+        integer length = fList.size();
+        integer redun = n;
+        integer temp = 0;
+        
+        if(n>=length) // check to see if length of list is longer then n
+        {
+            redun = math.mod(n,length); // set redun = to the remainder you would get of n % length
+        }
+        
+        for(integer i = 1; i <= redun; i++) // loop the rotate proper number of times
+        {
+            temp = fList.get(0);
+            fList.remove(0);		// rotate (remove the first number and add it to the end of list)
+            fList.add(temp);
+        }
+        
+        return fList;
+    }
+    public static Boolean bracketsAreBalanced( String s ) 
+    {
+        if(s.equals(' ')) // if the only value in s is a space then its true.
+        {
+            return true;
+        }
+        s = s.replace(' ', ''); // get rid of white space
+       
+        if(math.mod(s.length(),2) != 0) // check to see if the length is a even number.
+        {
+            return false;
+        }
+        // split string in half in order to compare one half to the other
+        integer halfLength = (s.length()/2);
+        String firstHalf = s.substring(0, halfLength); 
+        String secondHalf = s.substring(halfLength);
+		
+        if(firstHalf.equals(secondHalf))
+        {
+            return true;
+        }
+		// reverse the second half and replace the closed bracket with and open version so it can be compared.
+        secondHalf = secondHalf.reverse();
+        secondHalf = secondHalf.replace(')','(' );
+        secondHalf = secondHalf.replace('}','{' );
+        secondHalf = secondHalf.replace(']','[' );
+
+        
+        
+        if(firstHalf.equals(secondHalf))
+        {
+            return true;
+        }
+        else
+        {
+            return False;
+        }	
+    }
+}
