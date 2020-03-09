@@ -118,7 +118,7 @@ public class P0B
     }
     public static void updateAccountSize( ) 
     {
-        List<Account> accList = [SELECT NumberOfEmployees FROM Account];
+        List<Account> accList = [SELECT Size__c, NumberOfEmployees FROM Account];
         for(integer i = 0; i<=accList.size(); i++)
         {
             if(accList[i].NumberOfEmployees >= 1 && accList[i].NumberOfEmployees <= 1000)
@@ -139,10 +139,10 @@ public class P0B
  	}
     public static void updateCALeads( )
     {
-        List<Lead> myLeads = [SELECT Status, Address, Description FROM Lead];
+        List<Lead> myLeads = [SELECT Status, State, Description FROM Lead];
         for(integer i = 0; i <= myLeads.size(); i++)
         {
-            if(myLeads[i].Address.getState() == 'CA')
+            if(myLeads[i].State == 'CA')
             {
                 myLeads[i].Status = 'Closed - Not Converted';
                 myLeads[i].Description = 'We are no longer doing business in California';
